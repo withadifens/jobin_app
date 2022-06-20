@@ -96,7 +96,7 @@ class HomePage extends StatelessWidget {
               itemCount: 7,
               itemBuilder: (context, index) => ListTile(
                 leading: Image.asset('assets/google-icon.png'),
-                title: Text('Android Developer'),
+                title: Text('Flutter Developer'),
                 subtitle: Text('Google'),
               ),
             ),

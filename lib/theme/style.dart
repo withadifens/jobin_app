@@ -5,6 +5,7 @@ Color primary = const Color(0xff4141A4);
 Color secondary = const Color(0xffB3B5C4);
 Color redColor = const Color(0xffFD4F56);
 Color whiteColor = Colors.white;
+Color darkColor = const Color(0xff272C2F);
 
 TextStyle tagline = GoogleFonts.poppins(
     fontSize: 32, fontWeight: FontWeight.w400, color: whiteColor);

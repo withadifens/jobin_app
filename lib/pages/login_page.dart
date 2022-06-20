@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jobin_app/pages/home_page.dart';
 import 'package:jobin_app/pages/signup_page.dart';
 import 'package:jobin_app/theme/style.dart';
 
@@ -80,7 +81,13 @@ class LoginPage extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20), color: primary),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(),
+                          ));
+                    },
                     child: Text(
                       'Log In',
                       style: subtitle.copyWith(color: whiteColor),

@@ -58,17 +58,17 @@ class HomePage extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: 5,
                       itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.only(right: 5),
+                        padding: const EdgeInsets.only(right: 10),
                         child: Container(
                           height: 200,
-                          width: 130,
+                          width: 140,
                           decoration: BoxDecoration(
                               color: secondary,
                               borderRadius: BorderRadius.circular(16)),
                           alignment: Alignment.bottomCenter,
                           child: Padding(
                             padding:
-                                const EdgeInsets.only(left: 10, bottom: 10),
+                                const EdgeInsets.only(left: 15, bottom: 10),
                             child: Text(
                               'Android Developer',
                               style: subtitle,

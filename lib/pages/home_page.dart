@@ -1,5 +1,3 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:jobin_app/theme/style.dart';
 
@@ -14,12 +12,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 30, left: 24, right: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 30, left: 24, right: 24),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
@@ -38,42 +36,106 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 30,
                   backgroundImage: AssetImage('assets/profile.jpg'),
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30, bottom: 10),
-              child: Text(
-                'Categories',
-                style: title.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    color: darkColor),
-              ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 20, bottom: 10, left: 24, right: 24),
+            child: Text(
+              'Categories',
+              style: title.copyWith(
+                  fontSize: 16, fontWeight: FontWeight.w400, color: darkColor),
             ),
-            Row(
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 24),
+            child: Row(
               children: [
-                Container(
-                  height: 200,
-                  width: 150,
-                  decoration: BoxDecoration(
-                      color: secondary,
-                      borderRadius: BorderRadius.circular(16)),
-                ),
-                Container(
-                  height: 200,
-                  width: 150,
-                  decoration: BoxDecoration(
-                      color: secondary,
-                      borderRadius: BorderRadius.circular(16)),
+                Expanded(
+                  child: SizedBox(
+                    height: 200,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 5,
+                      itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.only(right: 5),
+                        child: Container(
+                          height: 200,
+                          width: 130,
+                          decoration: BoxDecoration(
+                              color: secondary,
+                              borderRadius: BorderRadius.circular(16)),
+                          alignment: Alignment.bottomCenter,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.only(left: 10, bottom: 10),
+                            child: Text(
+                              'Android Developer',
+                              style: subtitle,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 24, right: 24, top: 10),
+            child: Text(
+              'Just Posted',
+              style: title.copyWith(
+                  fontSize: 16, fontWeight: FontWeight.w400, color: darkColor),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.only(left: 10),
+              itemCount: 7,
+              itemBuilder: (context, index) => ListTile(
+                leading: Image.asset('assets/google-icon.png'),
+                title: Text('Android Developer'),
+                subtitle: Text('Google'),
+              ),
+            ),
+          )
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: secondary,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.notifications,
+              ),
+              label: 'Notifications'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.favorite,
+              ),
+              label: 'Favorite'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person,
+              ),
+              label: 'Profile'),
+        ],
       ),
     );
   }

@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
           ),
           Padding(
             padding:
-                const EdgeInsets.only(top: 20, bottom: 10, left: 24, right: 24),
+                const EdgeInsets.only(top: 15, bottom: 10, left: 24, right: 24),
             child: Text(
               'Categories',
               style: title.copyWith(

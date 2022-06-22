@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shimmer/flutter_shimmer.dart';
+import 'package:jobin_app/models/category_model.dart';
+import 'package:jobin_app/models/job_model.dart';
 import 'package:jobin_app/theme/style.dart';
 
 class HomePage extends StatelessWidget {
@@ -54,29 +57,50 @@ class HomePage extends StatelessWidget {
                 Expanded(
                   child: SizedBox(
                     height: 200,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 5,
-                      itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Container(
-                          height: 200,
-                          width: 140,
-                          decoration: BoxDecoration(
-                              color: secondary,
-                              borderRadius: BorderRadius.circular(16)),
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.only(left: 15, bottom: 10),
-                            child: Text(
-                              'Android Developer',
-                              style: subtitle,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: FutureBuilder<List<CategoryModel>>(
+                        future: getCategory(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            return ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: snapshot.data!
+                                  .map(
+                                    (e) => Padding(
+                                      padding: const EdgeInsets.only(right: 5),
+                                      child: Container(
+                                        height: 200,
+                                        width: 140,
+                                        decoration: BoxDecoration(
+                                          color: secondary,
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                          image: DecorationImage(
+                                            image: NetworkImage(e.imageUrl),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        alignment: Alignment.bottomLeft,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 10,
+                                            bottom: 10,
+                                          ),
+                                          child: Text(
+                                            e.name,
+                                            style: subtitle,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            );
+                          }
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }),
                   ),
                 ),
               ],
@@ -91,15 +115,27 @@ class HomePage extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.only(left: 10),
-              itemCount: 7,
-              itemBuilder: (context, index) => ListTile(
-                leading: Image.asset('assets/google-icon.png'),
-                title: Text('Flutter Developer'),
-                subtitle: Text('Google'),
-              ),
-            ),
+            child: FutureBuilder<List<JobModel>>(
+                future: getJob(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return ListView(
+                        padding: const EdgeInsets.only(left: 10),
+                        children: snapshot.data!
+                            .map((e) => ListTile(
+                                  leading: Image.network(e.companyLogo),
+                                  title: Text(e.name),
+                                  subtitle: Text(e.companyName),
+                                ))
+                            .toList());
+                  }
+                  return ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, index) => const ProfileShimmer(
+                      padding: EdgeInsets.only(left: 15, right: 24),
+                    ),
+                  );
+                }),
           )
         ],
       ),

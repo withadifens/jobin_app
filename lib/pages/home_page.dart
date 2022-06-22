@@ -140,31 +140,33 @@ class HomePage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         elevation: 0,
         showUnselectedLabels: false,
         showSelectedLabels: false,
-        selectedItemColor: Colors.black,
+        selectedItemColor: const Color(0xff272C2F),
         unselectedItemColor: secondary,
+        currentIndex: 0,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
+            icon: ImageIcon(
+              AssetImage('assets/nav1.png'),
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.notifications,
+              icon: ImageIcon(
+                AssetImage('assets/nav2.png'),
               ),
               label: 'Notifications'),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.favorite,
+              icon: ImageIcon(
+                AssetImage('assets/nav3.png'),
               ),
               label: 'Favorite'),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
+              icon: ImageIcon(
+                AssetImage('assets/nav4.png'),
               ),
               label: 'Profile'),
         ],

@@ -140,6 +140,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 0,
         showUnselectedLabels: false,
         showSelectedLabels: false,
         selectedItemColor: Colors.black,

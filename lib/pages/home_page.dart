@@ -107,7 +107,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 24, right: 24, top: 10),
+            padding: const EdgeInsets.only(left: 24, right: 24, top: 30),
             child: Text(
               'Just Posted',
               style: title.copyWith(
@@ -120,12 +120,16 @@ class HomePage extends StatelessWidget {
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     return ListView(
-                        padding: const EdgeInsets.only(left: 10),
+                        padding: const EdgeInsets.only(left: 10, top: 4),
                         children: snapshot.data!
-                            .map((e) => ListTile(
-                                  leading: Image.network(e.companyLogo),
-                                  title: Text(e.name),
-                                  subtitle: Text(e.companyName),
+                            .map((e) => Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: ListTile(
+                                    leading: Image.network(e.companyLogo),
+                                    title: Text(e.name),
+                                    subtitle: Text(e.companyName),
+                                  ),
                                 ))
                             .toList());
                   }
